@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- episodio CRUD y localstorage https://youtu.be/jfEEQVdbl54-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container mt-5" id="app">
+
+        <h3>{{titulo}}</h3>
+
+        <input type="text" class="form-control my-3" v-model="nuevaTarea" v-on:keyup.enter="agregarTarea">
+        <button class="btn btn-primary" @click="agregarTarea">Agregar</button>
+
+        <div class="mt-3" v-for="(tarea, index) of tareas">
+            <!-- esto es un if adentro de la clase en vue, si tarea.estado es verdadero se pone alert-success y si es falso se pone alert-danger-->
+            <div role="alert" :class="['alter', tarea.estado ? 'alert-success' : 'alert-danger']">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        {{index}} - {{tarea.nombre}} - {{tarea.estado}}
+                    </div>
+                    <div>
+                        <button class="btn btn-success btn-sm"@click="editarTarea(index)">OK</button>
+                        <button class="btn btn-danger btn-sm" @click="eliminar(index)">X</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="03.js"></script>
+</body>
+
+</html>
